@@ -43,7 +43,7 @@ def main():
         "Internal memory (RAM) size.",
         "Total storage capacity.",
         "Weight of the laptop.",
-        "Number of battery cells.",
+        "Numbers of battery cells.",
         "Type of pointing device (e.g., touchpad)."
     ]
 
