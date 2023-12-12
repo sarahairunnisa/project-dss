@@ -33,7 +33,7 @@ def main():
 
     weight = [0] * 7
     impact = [0] * 7
-    st.markdown("<h1 style='text-align: center; color: black;'>Rekomendasi <span style='color: #e69ded;'>Laptop</span></h1>", unsafe_allow_html=True)
+    st.markdown("<h1 style='text-align: center; color: black;'>Rekomendasi <span style='color: #e69ded;'>Laptop</span> Menggunakan Metode TOPSIS</h1>", unsafe_allow_html=True)
     st.markdown("<p style='text-align: center; color: black;'>oleh <b>Aliya Rahmania</b> (210005), <b>Adinda Salsabila</b> (210017), <b>Sarah Khairunnisa Prihantoro</b> (210063), <b>Zakia Noorardini</b> (210065) sebagai Project UAS Mata Kuliah Decision Support System</p>", unsafe_allow_html=True)
 
     attributes = ["Processor", "Screen", "InternalMemory", "TotalStorage", "Weight", "BatteryCells", "PointingDevice"]
