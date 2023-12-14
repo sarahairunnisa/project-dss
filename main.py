@@ -36,7 +36,7 @@ def main():
     st.markdown("<h1 style='text-align: center; color: black;'>Rekomendasi <span style='color: #e69ded;'>Laptop</span> Menggunakan Metode TOPSIS</h1>", unsafe_allow_html=True)
     st.markdown("<p style='text-align: center; color: black;'>oleh <b>Aliya Rahmania</b> (210005), <b>Adinda Salsabila</b> (210017), <b>Sarah Khairunnisa Prihantoro</b> (210063), <b>Zakia Noorardini</b> (210065) sebagai Project UAS Mata Kuliah Decision Support System</p>", unsafe_allow_html=True)
 
-    attributes = ["Processor", "Screen", "InternalMemory", "TotalStorage", "Weight", "BatteryCells", "PointingDevice"]
+    attributes = ["Processor", "Screen", "InternalMemory", "TotalStorage", "Weight", "BatteryCells"]
     descriptions = [
         "Provides the instructions and processing power the computer needs to do its work.",
         "Screen size and quality.",
@@ -44,12 +44,16 @@ def main():
         "Total storage capacity.",
         "Weight of the laptop.",
         "Numbers of battery cells.",
-        "Type of pointing device (e.g., touchpad)."
     ]
 
     for i in range(len(attributes)):
         st.sidebar.markdown(f"<h4 style='color: #1DB954; font-weight: bold;'>{attributes[i]}</h4>", unsafe_allow_html=True)
-        weight[i] = st.sidebar.slider(descriptions[i], -10, 10, 0)
+        weight[0] = st.sidebar.slider(descriptions[0], 1.3, 3.1, 0)
+        weight[1] = st.sidebar.slider(descriptions[1], 12.5, 17.3, 0)
+        weight[2] = st.sidebar.slider(descriptions[2], 4, 32, 0)
+        weight[3] = st.sidebar.slider(descriptions[3], 128, 2256, 0)
+        weight[4] = st.sidebar.slider(descriptions[4], 1.2, 4.42, 0)
+        weight[5] = st.sidebar.slider(descriptions[5], 3, 6, 0)
         impact[i] = 1 if weight[i] >= 0 else 0
         weight[i] = abs(weight[i])
         st.session_state.preVal_w[i] = weight[i]
