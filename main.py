@@ -60,6 +60,16 @@ def main():
     weight[5] = st.sidebar.slider(descriptions[5], 3, 6, 1,key='5')
 
     for i in range(len(attributes)):
+<<<<<<< HEAD
+=======
+        st.sidebar.markdown(f"<h4 style='color: #1DB954; font-weight: bold;'>{attributes[i]}</h4>", unsafe_allow_html=True)
+        weight[0] = st.sidebar.slider(descriptions[0], 1.3, 3.1, 0)
+        weight[1] = st.sidebar.slider(descriptions[1], 12.5, 17.3, 0)
+        weight[2] = st.sidebar.slider(descriptions[2], 4, 32, 0)
+        weight[3] = st.sidebar.slider(descriptions[3], 128, 2256, 0)
+        weight[4] = st.sidebar.slider(descriptions[4], 1.2, 4.42, 0)
+        weight[5] = st.sidebar.slider(descriptions[5], 3, 6, 0)
+>>>>>>> 1dcfbfb8bd96e836332679f49bbcd0199f7b2d21
         impact[i] = 1 if weight[i] >= 0 else 0
         weight[i] = abs(weight[i])
         st.session_state.preVal_w[i] = weight[i]
