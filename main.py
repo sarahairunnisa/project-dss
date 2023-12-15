@@ -102,7 +102,7 @@ def main():
             data = pd.read_csv(dataset_filename)
             topsis = Topsis(data, st.session_state.val_w, st.session_state.val_i)
             topsis.run()
-            name = topsis.getName()
+            # name = topsis.getName()
             rec = topsis.getEmbed()
             percent = topsis.getPercentage()
 
