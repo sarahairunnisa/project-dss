@@ -24,19 +24,19 @@ def main():
         st.session_state.clicked = True
 
     if 'preVal_w' and 'preVal_i' not in st.session_state:
-        st.session_state.preVal_w = [0] * 7
-        st.session_state.preVal_i = [0] * 7
+        st.session_state.preVal_w = [0] * 6
+        st.session_state.preVal_i = [0] * 6
 
     if 'val_w' and 'val_i' not in st.session_state:
-        st.session_state.val_w = [0] * 7
-        st.session_state.val_i = [0] * 7
+        st.session_state.val_w = [0] * 6
+        st.session_state.val_i = [0] * 6
 
-    weight = [0] * 7
-    impact = [0] * 7
+    weight = [0] * 6
+    impact = [0] * 6
     st.markdown("<h1 style='text-align: center; color: black;'>Rekomendasi <span style='color: #e69ded;'>Laptop</span> Menggunakan Metode TOPSIS</h1>", unsafe_allow_html=True)
     st.markdown("<p style='text-align: center; color: black;'>oleh <b>Aliya Rahmania</b> (210005), <b>Adinda Salsabila</b> (210017), <b>Sarah Khairunnisa Prihantoro</b> (210063), <b>Zakia Noorardini</b> (210065) sebagai Project UAS Mata Kuliah Decision Support System</p>", unsafe_allow_html=True)
 
-    attributes = ["Processor", "Screen", "InternalMemory", "TotalStorage", "Weight", "BatteryCells", "PointingDevice"]
+    attributes = ["Processor", "Screen", "InternalMemory", "TotalStorage", "Weight", "BatteryCells"]
     descriptions = [
         "Provides the instructions and processing power the computer needs to do its work.",
         "Screen size and quality.",
@@ -44,12 +44,22 @@ def main():
         "Total storage capacity.",
         "Weight of the laptop.",
         "Numbers of battery cells.",
-        "Type of pointing device (e.g., touchpad)."
     ]
 
+    st.sidebar.markdown(f"<h4 style='color: #1DB954; font-weight: bold;'>{attributes[0]}</h4>", unsafe_allow_html=True)
+    weight[0] = st.sidebar.slider(descriptions[0], 1.3, 3.1, 0.1, key='0')
+    st.sidebar.markdown(f"<h4 style='color: #1DB954; font-weight: bold;'>{attributes[1]}</h4>", unsafe_allow_html=True)
+    weight[1] = st.sidebar.slider(descriptions[1], 12.5, 17.3, 0.1,key='1')
+    st.sidebar.markdown(f"<h4 style='color: #1DB954; font-weight: bold;'>{attributes[2]}</h4>", unsafe_allow_html=True)
+    weight[2] = st.sidebar.slider(descriptions[2], 4, 32, 1, key='2')
+    st.sidebar.markdown(f"<h4 style='color: #1DB954; font-weight: bold;'>{attributes[3]}</h4>", unsafe_allow_html=True)
+    weight[3] = st.sidebar.slider(descriptions[3], 128, 2256, 1,key='3')
+    st.sidebar.markdown(f"<h4 style='color: #1DB954; font-weight: bold;'>{attributes[4]}</h4>", unsafe_allow_html=True)
+    weight[4] = st.sidebar.slider(descriptions[4], 1.2, 4.42, 0.1,key='4')
+    st.sidebar.markdown(f"<h4 style='color: #1DB954; font-weight: bold;'>{attributes[5]}</h4>", unsafe_allow_html=True)
+    weight[5] = st.sidebar.slider(descriptions[5], 3, 6, 1,key='5')
+
     for i in range(len(attributes)):
-        st.sidebar.markdown(f"<h4 style='color: #1DB954; font-weight: bold;'>{attributes[i]}</h4>", unsafe_allow_html=True)
-        weight[i] = st.sidebar.slider(descriptions[i], -10, 10, 0)
         impact[i] = 1 if weight[i] >= 0 else 0
         weight[i] = abs(weight[i])
         st.session_state.preVal_w[i] = weight[i]
@@ -59,7 +69,7 @@ def main():
     float_init()
     float_container = st.sidebar.container()
     with float_container:
-        if weight != [0] * 7:
+        if weight != [0] * 6:
             button = float_container.button("Search", on_click=click_button, disabled=False, use_container_width=True)
         else:
             error = float_container.error("Please change at least one preference!")
@@ -71,7 +81,7 @@ def main():
         data = pd.read_csv(dataset_filename)
         topsis = Topsis(data, st.session_state.preVal_w, st.session_state.preVal_i)
 
-        for i in range(0, 7):
+        for i in range(0, 6):
             st.session_state.val_w[i] = st.session_state.preVal_w[i]
             st.session_state.val_i[i] = st.session_state.preVal_i[i]
 
@@ -83,7 +93,7 @@ def main():
         st.markdown("<h4 style='text-align: center; color: black;'>How about a recommendation for you 👇</h4>", unsafe_allow_html=True)
         # Assuming you want to display a sample recommendation when not searched
         if data is not None:
-            sample_columns = ["Processor", "Screen", "InternalMemory", "TotalStorage", "Weight", "BatteryCells", "PointingDevice"]
+            sample_columns = ["Processor", "Screen", "InternalMemory", "TotalStorage", "Weight", "BatteryCells"]
             sample = data[sample_columns].iloc[[0]]
             st.write("Sample Recommendation:")
             st.write(sample)  # Display sample laptop details
