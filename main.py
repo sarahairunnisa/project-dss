@@ -102,13 +102,15 @@ def main():
             data = pd.read_csv(dataset_filename)
             topsis = Topsis(data, st.session_state.val_w, st.session_state.val_i)
             topsis.run()
+            name = topsis.getName()
             rec = topsis.getEmbed()
             percent = topsis.getPercentage()
 
             for i, percentage in zip(rec, percent):
                 iframe_code = f'<iframe style="border-radius:12px; background-color: transparent;" src="{i}?utm_source=generator" width="100%" height="160" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>'
                 st.markdown(iframe_code, unsafe_allow_html=True)
-                st.write(f'Recommendation Percentage: {percentage}')
+                # st.write(f'Laptop Recommendation: {name}')
+                st.write(f'Recommendation Percentage: {percentage * 100:.3f}')
 
 if __name__ == '__main__':
     main()
