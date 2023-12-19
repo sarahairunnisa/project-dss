@@ -58,13 +58,12 @@ class Topsis:
         self.performanceScore()
         self.rank()
 
-    #def getName(self) -> None:
-        #regex = re.compile(r'https://www.laptoparena.net/product/(\w+)')
-        #embed = []
-        #for i in range(1):
-            #embed.append(regex.sub(self.data['Name'].iloc[i], self.data['Name'].iloc[i]))
-        #return embed
-
+    def getName(self) -> None:
+        name = []
+        for i in range(15):
+            name.append(self.data['Name'].iloc[i])
+        return name
+    
     def getEmbed(self) -> None:
         regex = re.compile(r'https://www.laptoparena.net/product/(\w+)')
         embed = []
