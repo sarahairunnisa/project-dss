@@ -52,11 +52,14 @@ class Topsis:
         self.data = self.data.sort_values(by=['totalRelativeCloseness'], ascending=False)
 
     def run(self) -> None:
+        self.data['OriginalIndex'] = range(len(self.data))  # Add OriginalIndex column
         self.normalize()
         self.idealNegativeSolution()
         self.separationMeasures()
         self.performanceScore()
         self.rank()
+        self.data = self.data.drop(columns=['OriginalIndex'])  # Remove OriginalIndex after sorting
+
 
     def getName(self) -> None:
         name = []
@@ -65,11 +68,11 @@ class Topsis:
         return name
     
     def getEmbed(self) -> None:
-        regex = re.compile(r'https://www.laptoparena.net/product/(\w+)')
         embed = []
         for i in range(15):
-            embed.append(regex.sub(r'https://www.laptoparena.net/images/tmb/\1', self.data['ImageURLs'].iloc[i]))
+            embed.append(self.data['ImageURLs'].iloc[i])
         return embed
     
     def getPercentage(self) -> None:
         return self.data['totalRelativeCloseness'].iloc[0:15]
+    

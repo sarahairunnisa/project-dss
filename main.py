@@ -85,13 +85,6 @@ def main():
 
     if st.session_state.searched == False:
         st.markdown("<h4 style='text-align: center; color: black;'>⬅️ Anda belum mencari laptop, beralihlah ke sidebar!</h4>", unsafe_allow_html=True)
-        # st.markdown("<h4 style='text-align: center; color: black;'>How about a recommendation for you 👇</h4>", unsafe_allow_html=True)
-        # # Assuming you want to display a sample recommendation when not searched
-        # if data is not None:
-        #     sample_columns = ["Processor", "Screen", "InternalMemory", "TotalStorage", "Weight", "BatteryCells"]
-        #     sample = data[sample_columns].iloc[[0]]
-        #     st.write("Sample Recommendation:")
-        #     st.write(sample)  # Display sample laptop details
     else:
         if data is not None:
             data = pd.read_csv('data/Laptop.csv')
